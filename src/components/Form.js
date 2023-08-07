@@ -19,7 +19,6 @@ export default function Form(props) {
   useEffect(() => {
     if(dayValue !== '' && monthValue !== '' && yearValue !== '' && 999 < yearValue && yearValue <= currentYear && monthValue < 12){
       setDateValidity(isDateValid())
-      console.log(wrongYear)
       if(!dateValidity && (0 < monthValue < 13) && (999 < yearValue <= currentYear)){
         setWrongDay(true)
       }else{

@@ -11,6 +11,7 @@ export default function Age(props) {
     useEffect(() => {
       calculateAge()
     },[props])
+    
 
     const calculateAge = () => {
       if(props.year !== "" && props.month !== "" && props.day !== "" && props.year > 999 && props.year <= currentYear && props.month > 0 && props.month < 13 && props.dateValidity) {
@@ -33,7 +34,10 @@ export default function Age(props) {
         )
 
         if(deffInDays<0){
-          deffInDays = 365 + deffInDays
+          deffInDays = differenceInDays(
+            new Date(props.year, props.month, currentDate.getDate()),
+            new Date(props.year,props.month-1,props.day)
+          )
         }
 
         setAge({year: diffInYears, month: diffInMonths%12, day: deffInDays})

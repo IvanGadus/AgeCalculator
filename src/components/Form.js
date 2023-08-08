@@ -19,14 +19,14 @@ export default function Form(props) {
   useEffect(() => {
     if(dayValue !== '' && monthValue !== '' && yearValue !== '' && 999 < yearValue && yearValue <= currentYear && monthValue < 12){
       setDateValidity(isDateValid())
-      if(!dateValidity && (0 < monthValue < 13) && (999 < yearValue <= currentYear)){
+      if(!dateValidity && (0 < monthValue < 13) && 999 < yearValue && yearValue <= currentYear){
         setWrongDay(true)
       }else{
         setWrongDay(false)
       }
 
     }
-  },[dayValue,monthValue,yearValue,dateValidity])
+  },[dayValue,monthValue,yearValue,dateValidity,currentYear])
 
   const handleDayChange = (e) => {
     let value = e.target.value;
@@ -67,6 +67,7 @@ export default function Form(props) {
 
   const checkOldYear = () => {
     yearValue < 1000 ? setWrongYear(true) : setWrongYear(false)
+    yearValue === "" && setWrongYear(false)
   }
 
   const className = {
